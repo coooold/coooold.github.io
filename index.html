@@ -1,66 +1,92 @@
----
-layout: page
-css: ["index.css"]
----
-<div class="row">
-  {% for post in paginator.posts %}
-  <div class="col s12">
-    <div class="card hoverable">
-      <div class="card-content">
-        <span id="post-title" class="card-title">{{post.title}}</span>
-        <p id="post-date">
-          <i class="material-icons">date_range</i>
-          {{post.date | date: "%d/%m/%Y %H:%M"}}
-        </p>
-        <p id="post-content">{{post.excerpt | remove: '<p>' | remove: '</p>'}}</p>
-      </div>
-      <div class="card-action">
-        <a href="{{post.url | prepend: site.baseurl}}">
-          Read More
-        </a>
-      </div>
-    </div>
-  </div>
-  {% endfor %}
-  <div class="col s12 center-align">
-    <ul class="pagination">
-      <li class="{% unless paginator.previous_page %}disabled{% else %}waves-effect{% endunless %}">
-        {% if paginator.previous_page %}
-        {% if paginator.previous_page == 1 %}
-        <a href="{{site.baseurl}}/">
-        {% else %}
-        <a href="{{site.baseurl}}/page{{paginator.previous_page}}">
-        {% endif %}
-        {% else %}
-        <a href="#!">
-        {% endif %}
-          <i class="material-icons">chevron_left</i>
-        </a>
-      </li>
-      {% if paginator.page == 1 %}
-      <li class="active teal">
-        <a href="#!">1</a>
-      {% else %}
-      <li class="waves-effect">
-        <a href="{{site.baseurl}}/">1</a>
-      {% endif %}
-      </li>
-      {% for count in (2..paginator.total_pages) %}
-      {% if count == paginator.page %}
-      <li class="active teal"><a href="#!">{{count}}</a></li>
-      {% else %}
-      <li class="waves-effect"><a href="{{site.baseurl}}/page{{count}}">{{count}}</a></li>
-      {% endif %}
-      {% endfor %}
-      <li class="{% unless paginator.next_page %}disabled{% else %}waves-effect{% endunless %}">
-        {% if paginator.next_page %}
-        <a href="{{site.baseurl}}/page{{paginator.next_page}}">
-        {% else %}
-        <a href="#!">
-        {% endif %}
-          <i class="material-icons">chevron_right</i>
-        </a>
-      </li>
-    </ul>
-  </div>
-</div>
+<!doctype html>
+<html>
+
+<head>
+    <title>IOVP米表</title>
+    <meta http-equiv="Content-Type" content="text/html;charset=utf-8">
+</head>
+
+<body>
+    <h1>米表</h1>
+    <table>
+        <tr>
+            <th>domain</th>
+            <th>brief</th>
+        </tr>
+        <tr>
+            <td>zaotan.com</td>
+            <td>早谈</td>
+        </tr>
+        <tr>
+            <td>lengshu.com</td>
+            <td>冷书</td>
+        </tr>
+        <tr>
+            <td>jiuzan.com</td>
+            <td>酒赞</td>
+        </tr>
+        <tr>
+            <td>liusuo.com</td>
+            <td>六所</td>
+        </tr>
+        <tr>
+            <td>runcui.com</td>
+            <td>润翠</td>
+        </tr>
+        <tr>
+            <td>nailuo.com</td>
+            <td>奈落</td>
+        </tr>
+    </table>
+
+    <br>
+
+    <table id="contact">
+        <tr>
+            <td>
+                <b>Contact</b>
+            </td>
+            <td>
+                <p>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAHoAAAALCAYAAAHHIKkWAAAABGdBTUEAALGPC/xhBQAABPxJREFUWAmlmGuIlVUUhk+NXa0wTaeQbLLUJMSytKiIGYwIgyQStCywICqkHMySUvwjBEEXMKIoggm6YUNCaqLQuMfoaqQUpWWkqUwpVhb2wwzrec/sNWed7Xf2dxwXPGdd9m3t/e3LaKVSLKcVh6vRMbFMdYZavQMYr0UnoF+Cw9E3tS8aJ6EDqI7aFcrJMTqtsDQJ/oZ/f4yNRV8WbaUYYCT8BCaq86850kNgNHTIcRKivQR9MZwRfalToh2i1iDjwDJXeL1+kFD9rVTUzwq4LvpVZdle74PRvjbqugbETi+oOzWJtTrf+pms2BWxYC/6VtgSfa96o/OHD2Ivc74+pGR3v6r+9vHb6XzrZ6tiNrCV2xKa30ivocBvSRvY11+N84kP5OwXY+HRqP2s0navEwhJsDvxdya+3FNjrCdq348W4jbQnpHY0bC6/dH+37Xewfb9WJHlc9AC0uvga/gM5sAmkPwJ48FOjDVWmZfgHewF4Df3kaTc3FVmRB2cry9nk/4bW/u4aNL/xTaLo5YKzpZp+VgeXyblA+7kAatSacFuc37ObKfQJnw29tW5ysdRNilTd0qmrJ0yy0fV7FDLPkbGusgYbH8buKI6U9ebP6MT8c+rq1FzzsJsdkF0vZ5ba3qMVXTzqVKaj/ppuEALKRwOSjg9M4QG5EmsJwa8mvF0zazMdnaRuZRg2k8gZttW2/xCsCOGWSfLnJf2Y0XKZxRcbgHT9qjI/wB2xII+tMo6o58qP6m5FPoX8H38T9MGzt/obN+PwjZp2fuhS0YiemY6YIuL+358Pl3UeQw2WF1dYLrZpCUvwKOgLW6DL8YuEj+Ilf9lBlpHY4bzzXwGQ9vNJO3Hxm2jQjsESKXokk37URvlswTsqM3WIdfh/jxqvX3r4BUYAWtAW2wmlImOhPr7FnRmJUrs+6pV/6NEdEGWvcsTqbMZngfl4eUHHOWuPvxOtTo+nxUEp4K2+EdWwWt1rifCZIoZJfoiyie4Ojdgn+n8wZq2gEXtcy9Lms85dDCsqJOimLaoVudd0FfrApPzMQL0wpvwHbRCmWhh74GfIYCXm3C2wdugcXeCLjMT5aB75z3YB3dDM7KISgH074Qe2APaSZJcPirXq6T7QMduJHi5E0d310r4Fe6AZiS3drl8ytZnOoP/CN2wOmpUTfRBdX+l8jCBraB74BH4AiQ6rpr4JXIGKbp3QqatxtwNqpeKjvKroAkdr2iR98O0pGEuHy1+0YfWZnwOdB1+CI9DmTS7drl8NEa6PrqvvyoaXHetie66m81x+h3sFpB+CmwiV2HvBZ2sW+BG0H06D05ULqWD2+EhGAL+KtMftzPgXlAOmoOfB25DUb234FloBdu0mIOW5bTU7RRAa6h3r0xOdO0arY/61VqtBL1TD4D+GLkAqv/RoOAs+BhkixEwGo6CFkWihdLHnC8HOQDtMqI8iF5lThO6bMeqiytBOfiPrbjJDox55mS0NuN2GJqpk8un6ER30lev609vu079KBdrZDazdrl8rF+/PtMJ6jlTriY9GHeZI613aL0PRFunag9oQrvgZTAZh6FT/Q1oA7wBLVAmuhl+h0NwJNq70JIFoNgm0Li6ijSOpA0Og8bSu6g+6iaB30h0evURPGtj5Vw+11BH4wi11QmR3QHa+N3QBwGU1xxoRnJrl8sntz4a9z74BzbCLzAXKv8DlZsMyTpECqUAAAAASUVORK5CYII=">
+                </p>
+                <p>
+                    <img src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAGUAAAANCAYAAAHH3JBuAAAABGdBTUEAALGPC/xhBQAABKtJREFUWAntl3mIlVUYh29pi5VbSC6VTGNktmloYYs65pBEThn1R4jZmGkKZUxCGoSNFhlBEWVZEYYgqG2KZY1tf6jlUlBgNWa5FSVqi0Wb7c9z7zly5ute516ylOgHz7zve773O+d8Z72Ty7XU8BD2bFn816g9RbtD8ZzM4/uSeDr+AugXy2qjU65dReJn0BxeOD1Ya90OXaE3tANbbmjDH9UdroUH4GyYB3bjObAXxlNgOXwNb0IHWAPV0Be2groGOoONmjMMToKDS/ZMjS+Yyv++zSt1MBCGwFsQK30f33m4Ax4GY3UhuAIc/3XgfEWdGxxzdsJcY4PR4BqzkXEQ9RTOH3BoKIiNdAnxLdjZ0ACdQlmPYM2xkf2ikX+nlqYKX7axo2AEPFnhu/sl3eGugbahNtfAnuBrnCY1AeI+dM6jnDbl1E2EteDWck2oOI1OuftV/VIwucnYd4LvulLWk1XMtzxbj9Pu1lYujbyOjU6wh2XicsNDSOy1j+RsOzH1kegkNp5NFjnYcZ0bl6rHZ0VVqlPnF80uFJ6XPDs+8f9xN/3SbGODsgUh9kQupvtDYU2wHkv/mvyQ6eCV8l5o9QNst+B/iPUAGANHg7PUCOpGcG9cb4DWw2qwHu8wj8Woh3DOhA2h4LFgd2FnwBuQ7sHwOG928PcIOAuy9Syi7F3wKsvfe1o75X3X3gDVwwtwN6gTCqbFh1jUEY6Ey8GPiQfBUPyouJldlu6lFeHBJVg/RHmGx4MhX8AfB3pADLDZejwxX4WZJjrSJ4Md9bSpgdegUt3EC4762CIvLqHsGJgFdmYYbISXIErf0VeOvPod5ue9XO44bLYe6/otPM+bNknQKfErdV2ipRSXa/a5M5Jt87RMUlUSl6onSTkw7sUHptnC5q+voPHbyZ1UQb6pt8FSuBUehaehC0S51yz7T8r9rjxMvO1XwhbwV8RgiLoBxzNgK1wAqj88CFPgY+gNr0Dcw1fhW8+V4L5NdTXBvXARrINtcBmo12EhVIEXueVO6jPgnrdOf93Y56w8QGfDdvgEGsFv9AeL3+YpnmoagXX7S0t/OFj/akjvd8J9aixPm+Er8DapBVWqPz5zPF1cm2A0TAX73Avy/yp4kDlAUWtx6qAtfA8ObFQTTj0MgS/BQ/weeBHUBvBAj5qD0xiDYL1Sd0N1iLtjPVAdwOXgZI+CU+FH6AoLoQOooeCFkcq+7oErkkIXzEch9oL4DjqGeBx2WfBnYHdAjxA7ML+Ci6I1NZNwXZGk1vqzk3dccP3Bb/QkuBMaHIQa+BxcoaoaHAw1EOzcYgPUDdJLwxXlpLkTngXl4Jajl0naHBJ/CPZw7DZ4HPxYJ70KHNAx8C2UkoMgaY5+u/DCeqwTsQYGwTQYAVEeh46DqgV9V35r8tvjYklzW+uPuZ4sbogV8AXkx85JWQrzwMF1258Crvq+sArugm/AmR0Mbu9KNZUX/MC6Ml6cQM4AmAWT4XnoDD9DKheOdT4RCn/CnggzYRc4IZdCH4hahOPgN8E5kC6gicSfwhboGcDslRNp/s17SwrOGRgXsjvfd11Io6Cc/pD2v0qNgMeXd9FBoT8B0q/4wOyO/MgAAAAASUVORK5CYII=">
+                </p>
+
+            </td>
+        </tr>
+    </table>
+
+</body>
+
+
+<style>
+    body {
+        color: #333;
+        background: #fff;
+        padding: 6px 0 0;
+        margin: 0;
+        position: relative;
+        min-width: 900px;
+        text-align: center;
+        font-family: Verdana, Geneva, sans-serif, arial;
+    }
+    
+    table {
+        margin: 0 auto;
+        border: 1px solid black;
+        width: 30%;
+        border-spacing: 0;
+    }
+    
+    th {
+        border-bottom: 1px solid black;
+    }
+    
+    #contact {
+        margin: 0 auto;
+    }
+</style>
+
+</html>
